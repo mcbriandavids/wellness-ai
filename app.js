@@ -43,5 +43,5 @@ app.use(bodyParser.json());
 
 // Start the server
 app.listen(SERVER_PORT, () => {
-  logger.info(` 🏩 🍀  Server is running on port ${SERVER_PORT} 😇 😇`);
+  logger.info(` 🏩 🍀 🌿  Server is running on port ${SERVER_PORT} 😇 😇 🌿🌿`);
 });
