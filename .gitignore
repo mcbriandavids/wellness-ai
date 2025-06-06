@@ -4,3 +4,7 @@ dist
 package-lock.json
 package.json
 yarn.lock 
+lockfile.lock
+.vscode
+logs
+*.log
