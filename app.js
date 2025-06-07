@@ -1,12 +1,17 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const morgan = require("morgan"); // ✅ Import logger
-const path = require("path");
-const db = require("./config/db"); // ✅ Import database configuration
-const { logger } = require("./utils/logger"); // ✅ Import logger utility
-const { SERVER_PORT } = require("./config/dotenvconfig"); // ✅ Import server port from config
+import express from "express";
+import bodyParser from "body-parser";
+import morgan from "morgan"; // ✅ Import logger
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import path from "path";
+import db from "./config/db.js"; // ✅ Import database configuration
+import logger from "./utils/logger.js"; // ✅ Import logger utility
+import config from "./config/dotenvconfig.js"; // ✅ Import server port from config
 
 db();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -42,6 +47,8 @@ app.use(bodyParser.json());
 // Server
 
 // Start the server
-app.listen(SERVER_PORT, () => {
-  logger.info(` 🏩 🍀  Server is running on port ${SERVER_PORT} 😇 😇`);
+app.listen(config.SERVER_PORT, () => {
+  logger.info(
+    ` 🏩 🍀 🌿  Server is running on port ${config.SERVER_PORT} 😇 😇 🌿🌿`
+  );
 });
