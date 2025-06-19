@@ -1,13 +1,17 @@
 import express from "express";
-import bodyParser from "body-parser";
-import morgan from "morgan"; // ✅ Import logger
+import morgan from "morgan";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import path from "path";
-import db from "./config/db.js"; // ✅ Import database configuration
-import logger from "./utils/logger.js"; // ✅ Import logger utility
-import config from "./config/dotenvconfig.js"; // ✅ Import server port from config
+import db from "./config/db.js";
+import logger from "./utils/logger.js";
+import config from "./config/dotenvconfig.js";
+import sessions from "./config/session.js";
+import authRoutes from "./routes/authRoutes.js";
+import tipsRoutes from "./routes/tipsRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
+// Initialize DB
 db();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -15,14 +19,17 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-// ✅ Use morgan for logging HTTP requests
+// Logger
 app.use(
   morgan("dev", {
     stream: {
-      write: (message) => logger.info(message.trim()), // Log HTTP requests using the custom logger
+      write: (message) => logger.info(message.trim()),
     },
   })
 );
+
+// Session Middleware
+app.use(sessions);
 
 // View Engine
 app.set("view engine", "ejs");
@@ -31,20 +38,24 @@ app.set("views", path.join(__dirname, "views"));
 // Static Files
 app.use(express.static(path.join(__dirname, "public")));
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// Body Parsers
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// // Routes
-// const indexRoutes = require("./routes/index");
-// const authRoutes = require("./routes/auth");
-// const tipsRoutes = require("./routes/tips");
+// Routes
+app.use("/", authRoutes);
+app.use("/tips", tipsRoutes);
+app.use("/", dashboardRoutes);
 
-// app.use("/", indexRoutes);
-// app.use("/", authRoutes);
-// app.use("/tips", tipsRoutes);
+// Home Route
+app.get("/", (req, res) => {
+  res.render("home", { user: req.session.user || null });
+});
 
-// Server
+// Handle Chrome DevTools well-known request with 204 (No Content)
+app.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) => {
+  res.status(204).end(); //No content
+});
 
 // Start the server
 app.listen(config.SERVER_PORT, () => {
