@@ -1,15 +1,30 @@
-import mongoose from("mongoose");
+import mongoose from "mongoose";
+
 const schema = mongoose.Schema(
   {
-    name: String,
-    mood: String,
+    user: {
+      type: String,
+      ref: "User",
+      required: true,
+    },
+    mood: {
+      type: String,
+      required: true,
+      enum: ["happy", "sad", "neutral", "anxious", "angry", "excited"],
+    },
+    goal: {
+      type: String,
+      required: true,
+      enum: ["relaxation", "focus", "sleep", "fitness", "mindful"],
+    },
+    content: {
+      type: String,
+      required: true,
+    },
   },
   {
-    timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at",
-    },
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
   }
 );
 
-module.exports = mongoose.model("Tip", schema);
+export default mongoose.model("Tip", schema);

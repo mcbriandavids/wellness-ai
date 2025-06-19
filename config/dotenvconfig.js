@@ -9,7 +9,8 @@ const config = {
   APP_VERSION: process.env.APP_VERSION || "1.0.0",
   JWT_SECRET: process.env.JWT_SECRET || "your_jwt_secret",
   JWT_EXPIRATION: process.env.JWT_EXPIRATION || "1h",
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY || "my_openai_api_key",
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   OPENAI_API_BASE: process.env.OPENAI_API_BASE || "https://api.openai.com/v1",
+  SESSION_SECRET: process.env.SESSION_SECRET,
 };
 export default config;
