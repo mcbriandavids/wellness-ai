@@ -7,32 +7,87 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
-    class="min-h-screen bg-gradient-to-br from-green-100 to-blue-200 flex items-center justify-center"
+    class="min-h-screen bg-gradient-to-br from-green-200 via-blue-100 to-purple-200 flex items-center justify-center relative overflow-hidden"
   >
-    <div class="bg-white p-8 rounded-2xl shadow-lg max-w-md text-center">
-      <h1 class="text-3xl font-bold text-green-600 mb-4">
-        Welcome to Wellness AI 🌿
-      </h1>
-      <p class="text-gray-700 mb-6">Your personalized wellness companion.</p>
-
-      <% if (user) { %>
-      <p class="text-lg text-gray-800 mb-4">Hello, <%= user.name %>!</p>
-      <a
-        href="/dashboard"
-        class="bg-green-500 text-white px-4 py-2 rounded-xl hover:bg-green-600"
-        >Go to Dashboard</a
-      >
-      <a href="/logout" class="ml-4 text-red-500 hover:underline">Logout</a>
-      <% } else { %>
-      <a
-        href="/login"
-        class="text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl"
-        >Login</a
-      >
-      <a href="/register" class="ml-4 text-green-600 hover:underline"
-        >Register</a
-      >
-      <% } %>
+    <!-- Decorative background shapes -->
+    <div class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <div
+        class="absolute -top-32 -left-32 w-96 h-96 bg-green-300 opacity-30 rounded-full blur-3xl animate-pulse"
+      ></div>
+      <div
+        class="absolute top-1/2 right-0 w-80 h-80 bg-blue-300 opacity-20 rounded-full blur-2xl animate-pulse"
+      ></div>
+      <div
+        class="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-300 opacity-20 rounded-full blur-3xl animate-pulse"
+      ></div>
     </div>
+    <main
+      class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center justify-center"
+    >
+      <div
+        class="bg-white/90 p-10 rounded-3xl shadow-2xl max-w-xl text-center backdrop-blur-md"
+      >
+        <div class="flex justify-center mb-4">
+          <img
+            src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f33f.png"
+            alt="Wellness"
+            class="w-16 h-16"
+          />
+        </div>
+        <h1 class="text-4xl font-extrabold text-green-700 mb-2 tracking-tight">
+          Wellness AI
+        </h1>
+        <p class="text-lg text-gray-700 mb-6">
+          Personalized self-care tips powered by AI. Discover daily wellness
+          inspiration tailored to your mood and goals.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-4">
+          <% if (user) { %>
+          <a
+            href="/dashboard"
+            class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:from-green-600 hover:to-blue-600 transition"
+            >Go to Dashboard</a
+          >
+          <a
+            href="/logout"
+            class="bg-white border border-red-400 text-red-500 px-6 py-3 rounded-xl font-semibold shadow hover:bg-red-50 transition"
+            >Logout</a
+          >
+          <% } else { %>
+          <a
+            href="/login"
+            class="bg-gradient-to-r from-green-500 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold shadow hover:from-green-600 hover:to-blue-600 transition"
+            >Login</a
+          >
+          <a
+            href="/register"
+            class="bg-white border border-green-400 text-green-600 px-6 py-3 rounded-xl font-semibold shadow hover:bg-green-50 transition"
+            >Register</a
+          >
+          <% } %>
+        </div>
+        <div class="mt-6 flex flex-col items-center gap-2">
+          <span class="text-sm text-gray-500">
+            ✨ Start your journey to a healthier, happier you!
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs text-blue-400">
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 16h-1v-4h-1m4 0h-1v-4h-1m4 0h-1v-4h-1"
+              />
+            </svg>
+            AI-powered wellness for everyone
+          </span>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

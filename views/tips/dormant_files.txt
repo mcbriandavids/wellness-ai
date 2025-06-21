@@ -1,0 +1,2 @@
+c:\wellness-ai\controllers\tip\createNewTipLocal.js
+c:\wellness-ai\views\tips\devtest.ejs

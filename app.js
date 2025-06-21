@@ -10,6 +10,7 @@ import sessions from "./config/session.js";
 import authRoutes from "./routes/authRoutes.js";
 import tipsRoutes from "./routes/tipsRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 // Initialize DB
 db();
@@ -42,15 +43,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes
-app.use("/", authRoutes);
-app.use("/tips", tipsRoutes);
-app.use("/", dashboardRoutes);
-
 // Home Route
 app.get("/", (req, res) => {
   res.render("home", { user: req.session.user || null });
 });
+
+// Routes
+app.use("/", authRoutes);
+app.use("/tips", tipsRoutes);
+app.use("/", dashboardRoutes);
+app.use("/admin", adminRoutes);
 
 // Handle Chrome DevTools well-known request with 204 (No Content)
 app.get("/.well-known/appspecific/com.chrome.devtools.json", (req, res) => {

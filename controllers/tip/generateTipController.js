@@ -1,7 +1,15 @@
 import openai from "../../config/openai.js";
 import logger from "../../utils/logger.js";
+import { validationResult } from "express-validator";
 
 const generateTip = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("tips/form", {
+      error: errors.array()[0].msg,
+      oldInput: req.body,
+    });
+  }
   const { topic } = req.body;
 
   try {
@@ -25,6 +33,7 @@ const generateTip = async (req, res) => {
     logger.error("Tip generation failed:", err);
     res.render("tips/form", {
       error: "Failed to generate tip. Please try again.",
+      oldInput: req.body,
     });
   }
 };
