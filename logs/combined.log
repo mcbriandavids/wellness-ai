@@ -3707,3 +3707,11 @@
 [2025-06-19 09:30:14] [32minfo[39m: [0mPOST /tips/generate [32m200[0m 3779.646 ms - 1705[0m
 [2025-06-19 09:34:00] [32minfo[39m:  🏩 🍀 🌿  Server is running on port 3000 😇 😇 🌿🌿
 [2025-06-19 09:34:00] [32minfo[39m: ✅ MongoDB connected successfully
+[2025-06-25 06:20:13] [32minfo[39m:  🏩 🍀 🌿  Server is running on port 3000 😇 😇 🌿🌿
+[2025-06-25 06:20:13] [32minfo[39m: ✅ MongoDB connected successfully
+[2025-06-25 06:20:18] [32minfo[39m: [0mGET /dashboard [32m200[0m 72.559 ms - 1154[0m
+[2025-06-25 06:28:08] [32minfo[39m: [0mGET /dashboard [36m304[0m 29.698 ms - -[0m
+[2025-06-25 06:28:17] [32minfo[39m: [0mGET /logout [36m302[0m 12.291 ms - 30[0m
+[2025-06-25 06:28:17] [32minfo[39m: [0mGET / [36m302[0m 5.277 ms - 35[0m
+[2025-06-25 06:28:17] [33mwarn[39m: Email or password not provided
+[2025-06-25 06:28:17] [32minfo[39m: [0mGET /login [32m200[0m 10.161 ms - 2035[0m
